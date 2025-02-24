@@ -32,6 +32,7 @@ node のみ意図的に LTS の 22 系を選択しています
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
     "@vitejs/plugin-react": "4.3.4",
+    "@vitest/coverage-v8": "3.0.6",
     "eslint": "9.21.0",
     "eslint-config-next": "15.1.7",
     "happy-dom": "16.6.0",
