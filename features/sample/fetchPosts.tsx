@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export type Post = {
     userId: number;
@@ -15,18 +15,18 @@ export async function fetchHello() {
 
         return { data, error: null };
     } catch (error: unknown) {
-        console.log('catchしたエラー', error);
-        if (axios.isAxiosError(error)) {
-            return { data: null, error };
+        if (error instanceof AxiosError) {
+            console.log('axiosエラーをキャッチしました', error);
+            return { data: null, error: error.status };
         } else if (error instanceof TypeError) {
             console.log('TypeErrorをキャッチしました', error);
             return {
                 data: null,
-                error: { status: 'typeerror', message: error.message },
+                error: 500,
             };
         }
         console.log('予測しないエラーをキャッチしました', error);
 
-        throw { data: null, error };
+        throw { data: null, error: 500 };
     }
 }
